@@ -16,17 +16,22 @@ class RollDice extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      changeDie: "fas fa-dice-one",
+      changeDie2: "fas fa-dice-two"
     }
     this.roll = this.roll.bind(this);
   }
     roll(e) {
-      console.log('clicked');
+      let rand = Math.floor(Math.random() * this.props.dieNum.length);
+      let rand2 = Math.floor(Math.random() * this.props.dieNum.length);
+      this.setState({changeDie: this.props.dieNum[rand]});
+      this.setState({changeDie2: this.props.dieNum[rand2]});
     }
   render() {
     return (
       <div>
-        <Die dieNum = {this.props.dieNum} />
-        <Die dieNum = {this.props.dieNum} />
+        <Die dieNum = {this.state.changeDie} />
+        <Die dieNum = {this.state.changeDie2} />
         <button onClick={this.roll}>Roll Dice!</button>
       </div>
     )
